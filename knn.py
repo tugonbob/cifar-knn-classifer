@@ -45,6 +45,7 @@ if __name__ == "__main__":
 
     # display images and their predictions
     fig, axes = plt.subplots(5, K+2, figsize=(K * 2, 7))
+    fig.set_facecolor('#f7f7f7')
 
     for j in range(5):
         i = np.random.choice(range(len(test_x)))
@@ -52,6 +53,7 @@ if __name__ == "__main__":
         pred, knn = run_knn(img, K, distance_function=distance_function)
 
         for k in range(K+2):
+            axes[j][k].set_facecolor("#f7f7f7")
             axes[j][k].axis('off')
             if k == 0:
                 axes[j][k].set_title("Pred:\n" + pred)
@@ -62,7 +64,10 @@ if __name__ == "__main__":
             else:
                 axes[j][k].set_title(knn[k-2][2])
                 axes[j][k].imshow(knn[k-2][1])
+
+
     plt.tight_layout()
+    plt.savefig(f'knnResult')
     plt.show()
 
     
